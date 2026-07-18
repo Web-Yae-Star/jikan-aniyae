@@ -1,11 +1,11 @@
 version: '3.8'
 volumes:
-  mongo-data: { }
-  redis-data: { }
-  typesense-data: { }
+  mongo-data: {}
+  redis-data: {}
+  typesense-data: {}
 
 networks:
-  jikan_network: { }
+  jikan_network: {}
 
 secrets:
   db_username:
@@ -23,7 +23,7 @@ secrets:
 
 services:
   jikan_rest:
-    image: "docker.io/jikanme/jikan-rest:${_JIKAN_API_VERSION:-latest}"
+    build: .
     user: "${APP_UID:-10001}:${APP_GID:-10001}"
     networks:
       - jikan_network

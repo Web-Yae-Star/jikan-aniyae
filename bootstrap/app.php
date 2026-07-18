@@ -201,10 +201,6 @@ $app->router->group(
                 'parser_version' => JIKAN_PARSER_VERSION,
                 'website_url' => 'https://jikan.moe',
                 'documentation_url' => 'https://docs.api.jikan.moe/',
-                'github_url' => 'https://github.com/jikan-me/jikan-rest',
-                'parser_github_url' => 'https://github.com/jikan-me/jikan',
-                'production_api_url' => 'https://api.jikan.moe/v4/',
-                'status_url' => 'https://status.jikan.moe',
                 'myanimelist_heartbeat' => [
                     'status' => \App\Providers\SourceHeartbeatProvider::getHeartbeatStatus(),
                     'score' => \App\Providers\SourceHeartbeatProvider::getHeartbeatScore(),
