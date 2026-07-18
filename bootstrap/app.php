@@ -200,13 +200,7 @@ $app->router->group(
                 'version' => env('APP_VERSION'),
                 'parser_version' => JIKAN_PARSER_VERSION,
                 'website_url' => 'https://jikan.moe',
-                'documentation_url' => 'https://docs.api.jikan.moe/',
-                'myanimelist_heartbeat' => [
-                    'status' => \App\Providers\SourceHeartbeatProvider::getHeartbeatStatus(),
-                    'score' => \App\Providers\SourceHeartbeatProvider::getHeartbeatScore(),
-                    'down' => \App\Providers\SourceHeartbeatProvider::isFailoverEnabled(),
-                    'last_downtime' => \App\Providers\SourceHeartbeatProvider::getLastDowntime()
-                ]
+                'documentation_url' => 'https://docs.api.jikan.moe/'
             ]);
         });
     }
