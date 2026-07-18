@@ -1,0 +1,25 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+composer.phar
+.php_cs.cache
+.phpunit.result.cache
+.env.v4
+/storage/app/indexer
+/storage/app/failovers.json
+/storage/app/source_failover_last_downtime
+/storage/app/source_failover.lock
+# Temp dirs & trash
+/temp
+/tmp
+/coverage
+.DS_Store
+*.cache
+db_username.txt
+db_admin_username.txt
+db_password.txt
+db_admin_password.txt
+redis_password.txt
+typesense_api_key.txt
