@@ -48,7 +48,7 @@ WORKDIR /app
 COPY --chown=jikanapi:jikanapi ./composer.* /app/
 
 # install composer dependencies (autoloader MUST be generated later!)
-RUN composer install -n --no-dev --no-cache --no-ansi --no-autoloader --no-scripts --prefer-dist
+RUN composer install -n --no-dev --no-cache --no-ansi --no-autoloader --no-scripts --prefer-dist --ignore-platform-reqs
 
 # copy application sources into image (completely)
 COPY --chown=jikanapi:jikanapi . /app/

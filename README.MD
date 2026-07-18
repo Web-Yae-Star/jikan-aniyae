@@ -1,4 +1,4 @@
-# Jikan REST API - Fork Privado
+# Jikan Aniyae REST API - Fork Privado
 
 [![PHP stable](https://img.shields.io/badge/PHP-^8.1-blue.svg?style=flat)]()
 [![Docker](https://img.shields.io/badge/Docker-enabled-blue.svg?style=flat&logo=docker)]()
