@@ -31,7 +31,7 @@ abstract class SearchRequestHandler implements RequestHandler
     private static function getLiveSearchService(): LiveScrapingSearchService
     {
         if (self::$liveSearchService === null) {
-            self::$liveSearchService = new LiveScrapingSearchService();
+            self::$liveSearchService = new LiveScrapingSearchService(app('JikanParser'));
         }
         return self::$liveSearchService;
     }

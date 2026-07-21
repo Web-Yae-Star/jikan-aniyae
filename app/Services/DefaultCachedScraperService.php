@@ -10,6 +10,7 @@ use App\Support\CachedData;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Jikan\MyAnimeList\MalClient;
 use JMS\Serializer\SerializerInterface;
 use MongoDB\BSON\UTCDateTime;
@@ -65,7 +66,22 @@ final class DefaultCachedScraperService implements CachedScraperService
         $results = $this->dbResultSetToCachedData($dbResults);
 
         if ($results->isEmpty() || $results->isExpired()) {
-            $response = $this->repository->scrape($id);
+            try {
+                $response = $this->repository->scrape($id);
+            } catch (\Throwable $e) {
+                Log::warning('Upstream scrape failed for anime detail', [
+                    'id' => $id,
+                    'cache_key' => $cacheKey,
+                    'exception' => $e::class,
+                    'message' => $e->getMessage(),
+                ]);
+
+                if (!$results->isEmpty()) {
+                    return $results;
+                }
+
+                abort(503, 'Upstream source unavailable.');
+            }
 
             $this->raiseNotFoundIfErrors($response);
 
@@ -83,7 +99,23 @@ final class DefaultCachedScraperService implements CachedScraperService
         $results = $this->dbResultSetToCachedData($dbResults);
 
         if ($results->isEmpty() || $results->isExpired()) {
-            $scraperResponse = $this->repository->scrape($val);
+            try {
+                $scraperResponse = $this->repository->scrape($val);
+            } catch (\Throwable $e) {
+                Log::warning('Upstream scrape failed for keyed lookup', [
+                    'key' => $key,
+                    'value' => $val,
+                    'cache_key' => $cacheKey,
+                    'exception' => $e::class,
+                    'message' => $e->getMessage(),
+                ]);
+
+                if (!$results->isEmpty()) {
+                    return $results;
+                }
+
+                abort(503, 'Upstream source unavailable.');
+            }
 
             $this->raiseNotFoundIfErrors($scraperResponse);
 

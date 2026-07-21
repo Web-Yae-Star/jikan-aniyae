@@ -12,9 +12,9 @@ final class LiveScrapingSearchService
 {
     private MalClient $jikan;
 
-    public function __construct()
+    public function __construct(MalClient $jikan)
     {
-        $this->jikan = new MalClient();
+        $this->jikan = $jikan;
     }
 
     public function searchAnime(string $query, int $page = 1, int $limit = 25, ?string $orderBy = null, bool $sortDesc = false): LengthAwarePaginator
