@@ -17,6 +17,9 @@ return [
             'driver' => 'mongodb',
             'dsn'=> $dsn,
             'database' => env('DB_DATABASE', 'jikan'),
+            'options' => [
+                'readPreference' => 'primary',
+            ],
         ]
     ],
 

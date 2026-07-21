@@ -24,6 +24,15 @@ El metodo recomendado para desplegar este servicio es a traves de Docker Compose
    http://localhost:8080
    ```
 
+Si se necesita reconstruir la imagen para ver los ultimos cambios usa.
+```bash
+docker compose up -d --build --force-recreate
+```
+o
+```bash
+docker compose run --rm --entrypoint composer jikan_rest update mongodb/mongodb --with-all-dependencies --no-interaction
+```
+
 Para apagar los servicios:
 ```bash
 docker compose down

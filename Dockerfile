@@ -55,6 +55,7 @@ COPY --chown=jikanapi:jikanapi . /app/
 
 RUN set -ex \
     && composer dump-autoload -n --optimize --no-ansi --no-dev  \
+    && find vendor/mongodb/mongodb/src -name '*.php' -exec sed -i 's/ReadPreference::RP_PRIMARY/ReadPreference::PRIMARY/g' {} + \
     && chmod -R 777 ${COMPOSER_HOME}/cache \
     && chmod -R a+w storage/ \
     && chown -R jikanapi:jikanapi /app \
