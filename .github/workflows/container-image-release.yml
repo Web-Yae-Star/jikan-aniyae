@@ -93,7 +93,7 @@ jobs:
         run: echo "platform=$(echo '${{ matrix.platform }}' | sed 's/\//_/g')" >> $GITHUB_OUTPUT
 
       - name: Upload digest
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ steps.platform_transform.outputs.platform }}
           path: /tmp/digests/*
