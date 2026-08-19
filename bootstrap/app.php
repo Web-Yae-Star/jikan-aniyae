@@ -87,6 +87,8 @@ if (env('CORS_MIDDLEWARE', false)) {
     $globalMiddleware[] = \App\Http\Middleware\CorsMiddleware::class;
 }
 
+$globalMiddleware[] = \App\Http\Middleware\RequestTimingMiddleware::class;
+
 $app->middleware($globalMiddleware);
 
 $app->routeMiddleware([
