@@ -48,13 +48,13 @@ WORKDIR /app
 COPY --chown=jikanapi:jikanapi ./composer.* /app/
 
 # install composer dependencies (autoloader MUST be generated later!)
-RUN composer update mongodb/mongodb --with-all-dependencies --no-dev --no-ansi --no-interaction --prefer-dist --ignore-platform-reqs
+RUN composer install -n --no-dev --no-cache --no-ansi --no-autoloader --no-scripts --prefer-dist --ignore-platform-reqs
 
 # copy application sources into image (completely)
 COPY --chown=jikanapi:jikanapi . /app/
 
 RUN set -ex \
-    && composer dump-autoload -n --optimize --no-ansi --no-dev  \
+    && composer dump-autoload -n --optimize --no-ansi --no-dev --ignore-platform-reqs \
     && php /app/update_models.php \
     && find vendor/mongodb/mongodb/src -name '*.php' -exec sed -i 's/ReadPreference::RP_PRIMARY/ReadPreference::PRIMARY/g' {} + \
     && chmod -R 777 ${COMPOSER_HOME}/cache \
@@ -63,7 +63,7 @@ RUN set -ex \
     && chmod +x docker-entrypoint.php \
     && chmod +x docker-entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 4532
 EXPOSE 2114
 
 HEALTHCHECK CMD curl --fail http://localhost:2114/health?plugin=http || exit 1

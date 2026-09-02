@@ -30,7 +30,6 @@
         "laravel/scout": "^9.4",
         "league/flysystem": "^3.0",
         "matchish/laravel-scout-elasticsearch": "^6.0",
-        "mongodb/mongodb": "1.16.0",
         "mirazmac/dotenvwriter": "^0.1.0",
         "ocramius/package-versions": "^2.5",
         "predis/predis": "^1.1",
@@ -85,6 +84,10 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
+        "platform-check": false,
+        "platform": {
+            "php": "8.1.27"
+        },
         "allow-plugins": {
             "php-http/discovery": true
         }

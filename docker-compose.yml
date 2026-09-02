@@ -46,7 +46,7 @@ services:
       - ./app/Features/SearchRequestHandler.php:/app/app/Features/SearchRequestHandler.php:ro
       - ./docker-entrypoint.patched.php:/app/docker-entrypoint.php:ro
     ports:
-      - '8080:8080/tcp'
+      - '4532:4532/tcp'
     hostname: jikan-rest-api
     healthcheck:
       test: [ 'CMD-SHELL', 'wget --spider -q "http://127.0.0.1:2114/health?plugin=http"' ]
