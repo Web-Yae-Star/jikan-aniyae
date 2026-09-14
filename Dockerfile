@@ -1,7 +1,7 @@
 FROM docker.io/spiralscout/roadrunner:2.12.3 as roadrunner
 FROM docker.io/composer:2.6.6 as composer
-FROM docker.io/mlocati/php-extension-installer:2.1.77 as php-ext-installer
-FROM php:8.1.27-bullseye
+FROM docker.io/mlocati/php-extension-installer:latest as php-ext-installer
+FROM php:8.1-bookworm
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=php-ext-installer /usr/bin/install-php-extensions /usr/local/bin/
 ENV COMPOSER_HOME="/tmp/composer"

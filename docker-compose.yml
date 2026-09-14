@@ -121,9 +121,7 @@ services:
     command:
       - -c
       - TYPESENSE_API_KEY="$$(cat /run/secrets/typesense_api_key)" /opt/typesense-server --data-dir /data
-    deploy:
-      restart_policy:
-        condition: none
+
     volumes:
       - typesense-data:/data
     ports:
